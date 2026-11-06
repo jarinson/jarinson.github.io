@@ -9,7 +9,9 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="format-detection" content="telephone=no" />
-    <link rel="icon" href="data:," />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
     <title>OneTV — Videochat aleatorio para conocer gente de todo el mundo</title>
     <meta name="description" content="OneTV es un videochat aleatorio gratuito: pulsa Empezar y te empareja al azar con personas de diferentes países por cámara, audio y chat de texto. Sin registro, funciona en celular, iPhone y PC." />
     <meta name="keywords" content="OneTV, videochat aleatorio, chat aleatorio, conocer gente, videochat con desconocidos, chat por cámara, videochat gratis, chat de países" />
@@ -783,6 +785,14 @@
         overlay.addEventListener("click", function(ev){ if(ev.target === overlay) closeDoc(); });
         document.addEventListener("keydown", function(ev){ if(ev.key === "Escape") closeDoc(); });
       })();
+    </script>
+    <script>
+      /* Registra el service worker para que OneTV se pueda instalar como app. */
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+      }
     </script>
   </body>
 </html>
